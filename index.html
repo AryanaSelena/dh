@@ -1,0 +1,32 @@
+// netlify/functions/add-to-watchlist.js
+import { createClient } from '@supabase/supabase-js';
+
+export default async function handler(event) {
+  const supabase = createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_ANON_KEY
+  );
+
+  // Optional: get user from auth (if using Supabase auth)
+  // const { data: { user } } = await supabase.auth.getUser(event.headers.authorization);
+
+  const { symbol } = JSON.parse(event.body);
+
+  // Example: insert (replace with your logic)
+  const { data, error } = await supabase
+    .from('watchlists')
+    .insert([{ symbol, user_id: 'some-user-id-or-from-auth' }])
+    .select();
+
+  if (error) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: error.message })
+    };
+  }
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ success: true, data })
+  };
+}
