@@ -19,15 +19,40 @@
     <!-- Example placeholder (replace with your actual content) -->
     <h1>D&H Electronics Investments</h1>
     <p>Welcome to the stock and crypto dashboard.</p>
-<button>Invest in AAPL</button>
+<button>Invest in AA<button onclick="addToWatchlist('AAPL')"></button>PL</button>
     <!-- Example button - we'll make it work in the next step -->
-    <button>Invest in AAPL</button>
+    <button><button onclick="addToWatchlist('TSLA')">Invest in TSLA</button></button>
 
     <!-- Your full page content goes here (everything visible on the site) -->
 
     <!-- JavaScript code will go here soon -->
     <script>
-        console.log("Supabase library loaded successfully - ready for next step");
+        console.log(<script>
+    async function addToWatchlist(symbol) {
+        try {
+            const response = await fetch('/.netlify/functions/add-watchlist', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ symbol: symbol })
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                alert(`${symbol} added to your watchlist! Check Supabase to see it.`);
+            } else {
+                alert('Error: ' + (result.error || 'Something went wrong'));
+            }
+        } catch (error) {
+            alert('Failed to connect to server: ' + error.message);
+        }
+    }
+
+    console.log("Watchlist function ready - click a button to test!");
+</script>);
     </script>
 </body>
 </html>
+
