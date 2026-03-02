@@ -1,32 +1,33 @@
-// netlify/functions/add-to-watchlist.js
-import { createClient } from '@supabase/supabase-js';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D&H Electronics - Investments</title>
 
-export default async function handler(event) {
-  const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_ANON_KEY
-  );
+    <!-- This is the ONLY Supabase script you need - loads the library -->
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  // Optional: get user from auth (if using Supabase auth)
-  // const { data: { user } } = await supabase.auth.getUser(event.headers.authorization);
+    <!-- Add your CSS here if you have any -->
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <!-- <style> your styles here </style> -->
+</head>
+<body>
+    <!-- PASTE YOUR REAL WEBSITE CONTENT HERE -->
+    <!-- This is where all your headers, sections, investment tables, cards, "Invest Now" buttons belong -->
+<h1>D&H Electronics Investments</h1>
+    <!-- Example placeholder (replace with your actual content) -->
+    <h1>D&H Electronics Investments</h1>
+    <p>Welcome to the stock and crypto dashboard.</p>
+<button>Invest in AAPL</button>
+    <!-- Example button - we'll make it work in the next step -->
+    <button>Invest in AAPL</button>
 
-  const { symbol } = JSON.parse(event.body);
+    <!-- Your full page content goes here (everything visible on the site) -->
 
-  // Example: insert (replace with your logic)
-  const { data, error } = await supabase
-    .from('watchlists')
-    .insert([{ symbol, user_id: 'some-user-id-or-from-auth' }])
-    .select();
-
-  if (error) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: error.message })
-    };
-  }
-
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ success: true, data })
-  };
-}
+    <!-- JavaScript code will go here soon -->
+    <script>
+        console.log("Supabase library loaded successfully - ready for next step");
+    </script>
+</body>
+</html>
