@@ -1,6 +1,6 @@
 [build]
-  command = ""              # Blank = no build needed for your static site
-  publish = "/"             # Or "." if root has your index.html
+  command = ""
+  publish = "/"
 
 [functions]
-  directory = "netlify/functions"  # Points exactly to your folder
+  directory = "functions"
